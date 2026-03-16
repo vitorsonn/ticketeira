@@ -1,0 +1,122 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      {{ activeTab() === 'login' ? 'Acesse sua conta' : 'Crie sua conta grátis' }}
+    </h2>
+  </div>
+
+  <div
+    class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-8 shadow-xl rounded-2xl border border-gray-100"
+  >
+    <div class="flex mb-8 bg-gray-100 p-1 rounded-xl">
+      <button
+        (click)="setTab('login')"
+        [class]="
+          activeTab() === 'login'
+            ? 'w-1/2 py-2 text-sm font-semibold rounded-lg bg-white shadow-sm text-blue-600 transition-all'
+            : 'w-1/2 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700 transition-all'
+        "
+      >
+        Login
+      </button>
+      <button
+        (click)="setTab('register')"
+        [class]="
+          activeTab() === 'register'
+            ? 'w-1/2 py-2 text-sm font-semibold rounded-lg bg-white shadow-sm text-blue-600 transition-all'
+            : 'w-1/2 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700 transition-all'
+        "
+      >
+        Cadastro
+      </button>
+    </div>
+
+    @if (activeTab() === 'login') {
+      <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div>
+          <label class="block text-sm font-medium leading-6 text-gray-900">E-mail</label>
+          <input
+            formControlName="email"
+            type="email"
+            required
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <span class="text-xs text-red-500 mt-1">E-mail inválido.</span>
+          }
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium leading-6 text-gray-900">Senha</label>
+          <input
+            formControlName="password"
+            type="password"
+            required
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          [disabled]="loginForm.invalid"
+        >
+          Entrar
+        </button>
+      </form>
+    } @else {
+      <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div>
+          <label class="block text-sm font-medium text-gray-900">Nome Completo</label>
+          <input
+            type="text"
+            formControlName="nome"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-900">E-mail</label>
+          <input
+            type="email"
+            formControlName="email"
+            required
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <span class="text-xs text-red-500 mt-1">E-mail inválido.</span>
+          }
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-900">Senha</label>
+          <input
+            type="password"
+            formControlName="password"
+            required
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-900">Confirmar Senha</label>
+          <input
+            type="password"
+            formControlName="confirmarPassword"
+            required
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 disabled:opacity-60 disabled:cursor-not-allowed"
+          [disabled]="registerForm.invalid"
+        >
+          Criar conta
+        </button>
+      </form>
+    }
+  </div>
+</div>
