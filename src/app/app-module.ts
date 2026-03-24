@@ -10,6 +10,7 @@ import { EventDetail } from './features/events/event-detail/event-detail';
 import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { AuthComponent } from './features/auth/auth-component/auth-component';
+import { RouterModule } from '@angular/router';
 @NgModule({
     declarations: [App],
     imports: [
@@ -21,7 +22,8 @@ import { AuthComponent } from './features/auth/auth-component/auth-component';
         EventList,
         EventDetail,
         TicketPurchase,
-        MyTickets
+        MyTickets,
+        RouterModule
     ],
     providers: [
         provideBrowserGlobalErrorListeners(),
