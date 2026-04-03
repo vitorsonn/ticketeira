@@ -18,25 +18,39 @@ export class AdminEventsList {
 
   constructor(private service: EventService) {}
 
-  ngOnInit() : void{
-    this.loadEvents()
+  ngOnInit(): void {
+    this.loadEvents();
   }
 
   loadEvents(): void {
-    this.isLoading.set(true)
-    this.error.set(null)
+    this.isLoading.set(true);
+    this.error.set(null);
 
-    this.service.getEvents()
-     .pipe(
-      finalize(() => this.isLoading.set(false))
-    )
-    .subscribe({
-      next: (events) => this.events.set(events),
+    this.service
+      .getEvents()
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe({
+        next: (events) => this.events.set(events),
+        error: (err) => {
+          console.error(err);
+          this.error.set('Falha ao carregar eventos');
+        },
+      });
+  }
+
+  deleteEventById(evento: EventResponse) {
+    if(confirm(`Tem certeza que deseja excluir o evento "${evento.name}"?`)){
+       this.service.deleteEvents(evento.id).subscribe({
+      next: () => {
+        this.events.update((events) => events.filter((e) => e.id !== evento.id));
+      },
+
       error: (err) => {
-        console.error(err)
-        this.error.set('Falha ao carregar eventos')
-      }
-    })
+        console.error('Erro ao deletar', err);
+      },
+    });
+
+    }
 
   }
 }

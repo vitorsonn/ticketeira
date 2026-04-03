@@ -23,4 +23,9 @@ export class EventService {
   return this.http.get<EventResponse[]>(`${this.API_URL}`);
   }
 
+  deleteEvents(id: number): Observable <void>{
+    return this.http.delete<void>(`${this.API_URL}/${id}`)
+
+  }
+
 }

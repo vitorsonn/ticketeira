@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EventService } from '../../../../services/event-service';
 import { EventRequest } from '../../../../models/event.model';
@@ -18,10 +18,12 @@ export class AdminEventsForm {
 
   private mapToRequest(formValue: any): EventRequest {
     return {
+      id: formValue.id,
       name: formValue.name,
       dateTime: this.normalizeDateTimeForApi(formValue.dateTime),
       location: formValue.location,
       description: formValue.description,
+      sectors: formValue.sectors
     };
   }
 
@@ -32,12 +34,26 @@ export class AdminEventsForm {
     dateTime: ['', Validators.required],
     location: ['', Validators.required],
     description: ['', Validators.required],
+    sectors: this.fb.array([]),
   });
 
-  /**
-   * `input type="date"` devolve só `yyyy-MM-dd`. O backend espera `LocalDateTime`
-   * (ISO com hora). `datetime-local` pode vir sem segundos.
-   */
+  get sectors() {
+    return this.eventForm.controls['sectors'] as FormArray;
+  }
+
+  addSector() {
+    const sectorForm = this.fb.group({
+      name: ['', Validators.required],
+      capacity: [0, [Validators.required, Validators.min(1)]],
+      preco: [0, [Validators.required, Validators.min(0)]],
+    });
+    this.sectors.push(sectorForm);
+  }
+
+  removeSector(index: number) {
+  this.sectors.removeAt(index);
+}
+
   private normalizeDateTimeForApi(value: string): string {
     const date = new Date(value);
 
@@ -45,10 +61,9 @@ export class AdminEventsForm {
       throw new Error('Invalid date format');
     }
 
-      const pad = (n: number) => String(n).padStart(2, '0');
+    const pad = (n: number) => String(n).padStart(2, '0');
 
-
-      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
   }
 
   onSubmit(): void {
