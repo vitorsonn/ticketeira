@@ -1,6 +1,14 @@
 export interface EventRequest {
     name: string;
-    date: string; // Ou Date, dependendo de como você trata o JSON
-    localization: string;
+    dateTime: string; // Ou Date, dependendo de como você trata o JSON
+    location: string;
     description: string;
   }
+
+export interface EventResponse {
+  id: number;
+  name: string;
+  dateTime: string;
+  location: string;
+  description: string;
+};

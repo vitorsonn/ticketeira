@@ -1,1 +1,55 @@
-<p>admin-events-list works!</p>
+
+<div class="max-w-6xl mx-auto p-6">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Eventos</h1>
+
+    <button
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+      Novo Evento
+    </button>
+  </div>
+
+  <!-- Lista -->
+  <div class="grid gap-4">
+
+    <!-- Card -->
+    <div
+      *ngFor="let event of events()"
+      class="bg-gray-900 border border-gray-800 rounded-xl p-4 flex justify-between items-center">
+
+      <!-- Info -->
+      <div>
+        <h2 class="text-lg font-semibold">
+          {{ event.name }}
+        </h2>
+
+        <p class="text-sm text-gray-400">
+          {{ event.description }}
+        </p>
+
+        <div class="text-xs text-gray-500 mt-2 flex gap-4">
+          <span>📍 {{ event.location }}</span>
+          <span>🕒 {{ event.dateTime | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-2">
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1 rounded-md text-sm">
+          Editar
+        </button>
+
+        <button
+          class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm">
+          Deletar
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

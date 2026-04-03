@@ -35,11 +35,11 @@
           <div>
             <label class="block text-sm font-medium leading-6 text-gray-900">Data</label>
             <input
-              formControlName="date"
+              formControlName="dateTime"
               type="date"
               class="mt-2 block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
             />
-            @if (eventForm.get('date')?.invalid && eventForm.get('date')?.touched) {
+            @if (eventForm.get('dateTime')?.invalid && eventForm.get('dateTime')?.touched) {
               <p class="mt-1 text-xs text-red-500">Selecione a data do evento.</p>
             }
           </div>
@@ -47,12 +47,12 @@
           <div>
             <label class="block text-sm font-medium leading-6 text-gray-900">Local</label>
             <input
-              formControlName="localization"
+              formControlName="location"
               type="text"
               placeholder="Ex: Arena Central - São Paulo"
               class="mt-2 block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
             />
-            @if (eventForm.get('localization')?.invalid && eventForm.get('localization')?.touched) {
+            @if (eventForm.get('location')?.invalid && eventForm.get('location')?.touched) {
               <p class="mt-1 text-xs text-red-500">Informe o local do evento.</p>
             }
           </div>
