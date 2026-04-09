@@ -1,13 +1,13 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { EventResponse } from '../../../../models/event.model';
 import { EventService } from '../../../../services/event-service';
 import { finalize } from 'rxjs/operators';
+import { EventCard } from '../../../events/event-card/event-card';
 
 @Component({
   selector: 'app-admin-events-list',
-  imports: [DatePipe, CommonModule],
+  imports: [CommonModule,EventCard],
   templateUrl: './admin-events-list.html',
   styleUrl: './admin-events-list.css',
 })
@@ -53,4 +53,12 @@ export class AdminEventsList {
     }
 
   }
+
+  abrirModalEdicao(event: EventResponse): void {
+  console.log('Editando evento:', event.name);
+  // Geralmente aqui você navega para a rota de edição:
+  // this.router.navigate(['/admin/events/edit', event.id]);
+
+  // Ou abre um Modal passando os dados do evento para o formulário
+}
 }

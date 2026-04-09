@@ -9,6 +9,7 @@ import { adminGuard } from './core/guards/admin-guard';
 import { EventList } from './features/events/event-list/event-list';
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
+import { EventDetails } from './features/events/event-details/event-details';
 
 const routes: Routes = [
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
 { path: 'admin/events', component: AdminEventsList, canActivate: [authGuard, adminGuard] },
 { path: 'admin/events/new', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
 { path: 'admin/events/:id/edit', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
+
+
+{path: 'events/:id', component: EventDetails}
 
 
 
