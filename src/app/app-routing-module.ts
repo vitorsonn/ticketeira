@@ -47,7 +47,6 @@ const routes: Routes = [
   //admin
 
 { path: 'admin/events', component: AdminEventsList, canActivate: [authGuard, adminGuard] },
-{ path: 'admin/events/new', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
 { path: 'admin/events/:id/edit', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
 
 

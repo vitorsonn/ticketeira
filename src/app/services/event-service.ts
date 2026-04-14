@@ -28,4 +28,9 @@ export class EventService {
 
   }
 
+  updateEvent(id: number, eventData: EventRequest): Observable<EventResponse>{
+    const url = `${this.API_URL}/${id}`
+
+    return this.http.put<EventResponse>(url, eventData)
+  }
 }

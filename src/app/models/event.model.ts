@@ -13,10 +13,18 @@ export interface EventResponse {
   dateTime: string;
   location: string;
   description: string;
+  sectors: SectorResponse[]
 };
 
 export interface SectorRequest {
   name: string;
   capacity: number;
-  price: number;
+  preco: number;
+}
+
+export interface SectorResponse {
+  id: number;
+  name: string;
+  capacity: number;
+  preco: number;
 }

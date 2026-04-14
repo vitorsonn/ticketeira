@@ -8,7 +8,9 @@
 
       <button
         class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-indigo-600/20 active:scale-95"
-      >
+
+      (click)="abrirModalCadastro()"
+        >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -35,6 +37,16 @@
       (onEdit)="abrirModalEdicao($event)"
       (onDelete)="deleteEventById($event)"> </app-event-card>
   }
+
+  @if (isModalOpen()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+    <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+
+      <app-admin-events-form
+        [eventToEdit]="selectedEvent()"
+        (onFinish)="handleFinish($event)">
+      </app-admin-events-form>
 </div>
   </div>
+}
 </div>
