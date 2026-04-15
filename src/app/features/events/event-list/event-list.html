@@ -1,14 +1,13 @@
-<!-- No componente onde você lista os eventos (Home ou Listagem) -->
-<div class="min-h-screen bg-[#0f1115] py-10 px-4"> <!-- Fundo escuro pra tela toda -->
+<div class="min-h-screen bg-[#0f1115] py-10 px-4">
 
-  <div class="max-w-5xl mx-auto"> <!-- Limita a largura e centraliza -->
+  <div class="max-w-5xl mx-auto">
 
     <header class="mb-8">
       <h1 class="text-3xl font-bold text-white">Eventos Disponíveis</h1>
-      <p class="text-gray-400">Escolha seu próximo show ou evento esportivo</p>
+      <p class="text-gray-400">Escolha seu próximo show</p>
     </header>
 
-    <div class="flex flex-col gap-6"> <!-- Cria o espaçamento (gap) entre os cards -->
+    <div class="flex flex-col gap-6">
        @for (item of events(); track item.id) {
           <app-event-card [event]="item" (onView)="irParaPaginaDeCompra($event)"></app-event-card>
        }

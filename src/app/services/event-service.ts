@@ -33,4 +33,8 @@ export class EventService {
 
     return this.http.put<EventResponse>(url, eventData)
   }
+
+  getEventById(id: number): Observable<EventResponse> {
+  return this.http.get<EventResponse>(`${this.API_URL}/${id}`);
+}
 }
