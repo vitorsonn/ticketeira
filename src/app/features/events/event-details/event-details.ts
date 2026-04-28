@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EventService } from '../../../services/event-service';
 import { EventResponse, SectorResponse } from '../../../models/event.model';
-
+import { PaymentMethod } from '../../../payment-method/payment-method';
 
 @Component({
   selector: 'app-event-details',
   standalone: true,
   templateUrl: './event-details.html',
   styleUrl: './event-details.css',
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule, PaymentMethod]
 })
 export class EventDetails implements OnInit {
   private route = inject(ActivatedRoute)
@@ -19,6 +19,7 @@ export class EventDetails implements OnInit {
   event = signal<EventResponse | null>(null);
   selectedSector = signal<SectorResponse | null>(null);
   isLoading = signal(true);
+  showPaymentModal = signal(false);
 
   ngOnInit(): void {
     // Captura o ID da URL
@@ -53,10 +54,12 @@ export class EventDetails implements OnInit {
 
   finalizarCompra() {
     if (this.selectedSector()) {
-      console.log('Iniciando compra para o setor:', this.selectedSector()?.name);
-      // Aqui chamaremos o TicketService futuramente
-      alert(`Setor ${this.selectedSector()?.name} selecionado! Próximo passo: Backend.`);
-    }
+    this.showPaymentModal.set(true);
   }
+  }
+
+  fecharModal() {
+  this.showPaymentModal.set(false);
+}
 
 }

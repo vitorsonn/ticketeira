@@ -10,6 +10,7 @@ import { EventList } from './features/events/event-list/event-list';
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
 import { EventDetails } from './features/events/event-details/event-details';
+import { PaymentSuccess } from './payment-success/payment-success';
 
 const routes: Routes = [
   {
@@ -50,8 +51,9 @@ const routes: Routes = [
 { path: 'admin/events/:id/edit', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
 
 
-{path: 'events/:id', component: EventDetails}
+{path: 'events/:id', component: EventDetails},
 
+{path: 'sucesso', component: PaymentSuccess}
 
 
 ];

@@ -8,6 +8,8 @@ import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purcha
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { AuthComponent } from './features/auth/auth-component/auth-component';
 import { RouterModule } from '@angular/router';
+import { PaymentSuccess } from './payment-success/payment-success';
+
 @NgModule({
     declarations: [App],
     imports: [
